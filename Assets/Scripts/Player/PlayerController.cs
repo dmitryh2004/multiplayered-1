@@ -6,8 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] int playerNumber = 1;
     [SerializeField] TMP_Text playerName;
+    [SerializeField] Transform sprite;
 
     [SerializeField] float playerSpeed = 4f;
+    [SerializeField] float rotationSpeed = 180f;
 
     [SerializeField] bool active = false;
     PlayerControls controls;
@@ -48,6 +50,11 @@ public class PlayerController : MonoBehaviour
         else if (playerNumber == 3) usedInputAction = controls.Gameplay.Player3;
         else if (playerNumber == 4) usedInputAction = controls.Gameplay.Player4;
 
-        rb.linearVelocity = playerSpeed * usedInputAction.ReadValue<Vector2>();
+        Vector2 input = usedInputAction.ReadValue<Vector2>();
+
+        rb.linearVelocity = playerSpeed * input;
+
+        Vector3 rotation = Time.deltaTime * rotationSpeed * new Vector3(0f, 0f, input.x);
+        sprite.Rotate(rotation);
     }
 }
