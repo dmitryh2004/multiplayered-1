@@ -5,8 +5,8 @@ public class PlayerUIController : MonoBehaviour
 {
     [SerializeField] List<PlayerUISlotController> playerSlots = new();
 
-    public void ChangeSlotState(int slot, bool state)
+    public void ChangeSlotState(int slot, bool state, int playerCount)
     {
-        playerSlots[slot].ChangeState(state);
+        playerSlots[slot].ChangeState(state, playerCount);
     }
 }

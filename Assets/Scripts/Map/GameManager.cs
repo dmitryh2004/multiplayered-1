@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         bool player3Active = PlayerPrefs.GetInt("Player3Active", 0) > 0;
         bool player4Active = PlayerPrefs.GetInt("Player4Active", 0) > 0;
+        int playerCount = 2 + PlayerPrefs.GetInt("Player3Active", 0) + PlayerPrefs.GetInt("Player4Active", 0);
 
         if (!player3Active)
         {
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             PlayerController pc = players[i];
-            uiController.ChangeSlotState(i, pc.gameObject.activeInHierarchy);
+            uiController.ChangeSlotState(i, pc.gameObject.activeInHierarchy, playerCount);
         }
 
         endGameCanvas.HideCanvas();
